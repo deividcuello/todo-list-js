@@ -137,6 +137,7 @@ function editContent(value){
             }
         });
     }
+    input.classList.remove('focus:border-2');
     isEdit = false;
     input.value = '';
     renderTasks();
@@ -147,6 +148,7 @@ function editFunc(){
     input.value = this.parentNode.parentNode.querySelector('h3').textContent;
     parentEditId = this.parentNode.parentNode.parentNode.id;
     isEdit = true;
+    input.classList.add('focus:border-2');
     input.focus();
 }
 
