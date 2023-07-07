@@ -568,6 +568,10 @@ video {
   position: relative;
 }
 
+.sticky {
+  position: sticky;
+}
+
 .left-0 {
   left: 0px;
 }
@@ -744,6 +748,21 @@ video {
   padding-bottom: 0.75rem;
 }
 
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.py-14 {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
 .pt-5 {
   padding-top: 1.25rem;
 }
@@ -854,6 +873,10 @@ video {
 
   .md\:flex-row {
     flex-direction: row;
+  }
+
+  .md\:text-\[100\%\] {
+    font-size: 100%;
   }
 }
 
