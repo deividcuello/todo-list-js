@@ -1,4 +1,4 @@
-const tasks = {
+const tasks =  localStorage.getItem("todoList") !== null ? JSON.parse(localStorage.getItem("todoList")) : {
     todo: [],
     completed: []
 }
@@ -24,6 +24,7 @@ const completeSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="
 
 const uncompletedSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-x-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>';
 
+renderTasks();
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -101,11 +102,15 @@ function addTodo(text, isTodo){
         todos.appendChild(divContainer);
         return
     } else if(isTodo === 'completed'){
+        if(!h3.classList.contains('line-through')) h3.classList.add('line-through');
         completed.appendChild(divContainer);
         return
     }
 
     todos.appendChild(divContainer);
+
+    localStorage.setItem('todoList', JSON.stringify(tasks));
+    
 }
 
 function deleteFunc(){
@@ -121,6 +126,7 @@ function deleteFunc(){
     }
 
     checkIsEmpty();
+    localStorage.setItem('todoList', JSON.stringify(tasks));
 }
 
 function editContent(value){
@@ -140,6 +146,7 @@ function editContent(value){
     input.classList.remove('focus:border-2');
     isEdit = false;
     input.value = '';
+    localStorage.setItem('todoList', JSON.stringify(tasks));
     renderTasks();
 }
 
@@ -153,6 +160,7 @@ function editFunc(){
 }
 
 function completeFunc(){
+    if(tasks.todo.length === 0 && tasks.completed.length === 0) return
     const item = this.parentNode.parentNode;
     const h3 = item.querySelector('h3').textContent;
     const parentId = item.parentNode.id;
@@ -171,6 +179,7 @@ function completeFunc(){
         tasks.completed.splice(tasks.completed.indexOf(`${h3} ed`), 1);
     }
 
+    localStorage.setItem('todoList', JSON.stringify(tasks));
     checkIsEmpty();
 }
 
