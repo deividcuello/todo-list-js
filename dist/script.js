@@ -102,7 +102,11 @@ function addTodo(text, isTodo){
         todos.appendChild(divContainer);
         return
     } else if(isTodo === 'completed'){
-        if(!h3.classList.contains('line-through')) h3.classList.add('line-through');
+        if(!h3.classList.contains('line-through')){
+            h3.classList.add('line-through');
+            completeBtn.innerHTML = uncompletedSvg;
+        } 
+
         completed.appendChild(divContainer);
         return
     }
